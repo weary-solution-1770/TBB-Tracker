@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TBB Tracker</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TBB">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#e9ecee;--card:#f6f7f8;--ink:#1c2a33;--mute:#5f6e78;--line:#c6cdd2;--acc:#1f5f4a;--accink:#fff;--lss:#3b6ea5;--amb:#8a6d1d;--lift:#7a3b2e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191d;--card:#1d2429;--ink:#e6ebee;--mute:#92a1ab;--line:#33404a;--acc:#4fb08e;--accink:#08130f;--lss:#7fb0e6;--amb:#d6b254;--lift:#e0907e}}
+:root[data-theme="dark"]{--bg:#14191d;--card:#1d2429;--ink:#e6ebee;--mute:#92a1ab;--line:#33404a;--acc:#4fb08e;--accink:#08130f;--lss:#7fb0e6;--amb:#d6b254;--lift:#e0907e}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Barlow","Segoe UI",system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:16px 12px 48px}
+h1{font:700 26px/1.1 "Barlow Condensed","Arial Narrow",sans-serif;margin:4px 0 2px}
+h2{font:700 22px/1.2 "Barlow Condensed","Arial Narrow",sans-serif;margin:12px 0 2px}
+.sub,.note{color:var(--mute);font-size:14px;margin:0 0 10px}
+button,select{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 12px;min-height:44px}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.primary{background:var(--acc);color:var(--accink);border-color:var(--acc);font-weight:600;width:100%}
+.top{display:flex;gap:8px;margin:10px 0}.top>*{flex:1}
+.wkh{display:flex;align-items:center;justify-content:space-between;margin:16px 0 4px}
+.wkh span{color:var(--mute);font-size:14px}
+.wkh button{min-height:32px;padding:2px 8px;font-size:13px}
+.g{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.c{min-height:46px;padding:2px 0;font-size:11px;line-height:1.15;text-align:center;border-radius:6px;border-left:3px solid var(--line);display:flex;flex-direction:column;justify-content:center;word-break:break-all}
+.c small{color:var(--mute);font-size:9px}
+.c.se{border-left-color:var(--acc)}.c.lss,.c.cond{border-left-color:var(--lss)}.c.lift{border-left-color:var(--lift)}.c.test{border-left-color:var(--amb)}
+.c.done{background:var(--acc);color:var(--accink);border-color:var(--acc)}.c.done small{color:var(--accink)}
+.c.rest{opacity:.4;border-style:dashed}
+.dl{width:100%;min-height:44px;border-left:3px solid var(--amb)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.it{padding:10px 0;border-top:1px solid var(--line)}.it:first-child{border-top:0;padding-top:0}
+.it .note{margin:0 0 6px}
+table{width:100%;border-collapse:collapse}
+th{font-weight:600;color:var(--mute);font-size:13px;padding-bottom:6px}
+td{padding:4px 3px}td:first-child{color:var(--mute);width:56px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;min-height:44px}
+label{display:block;font-size:14px;color:var(--mute);margin:10px 0 4px}
+.row{display:flex;gap:8px;align-items:end}.row>*{flex:1}
+.leg{font-size:12px;color:var(--mute)}
+.ck{display:flex;align-items:center;gap:10px;margin:4px 0;color:var(--ink);font-size:15px}.ck input{width:22px;height:22px;min-height:0;padding:0;margin:0}select{width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chips button{min-height:36px;padding:4px 10px}.chips .sel{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.ch{width:100%;height:auto;display:block}.gl{stroke:var(--line);stroke-width:1}.tx{fill:var(--mute);font-size:10px}.stats{display:flex;gap:8px;margin-top:8px}.stats div{flex:1;font-size:13px;color:var(--mute)}.stats b{display:block;font-size:17px;color:var(--ink)}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var KEY="tb-tracker-v2",S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var NM={sq:"Squat",bp:"Bench press",dl:"Deadlift",rp:"Rack pull",oh:"Overhead press",br:"Barbell row",pc:"Power clean",pp:"Push press",pl:"Pendlay row"};
+var DESC={
+GC2:["10 pull-ups, 10 burpees, 10 squat jumps, 10 plyo push-ups. Repeat with descending sets (9, 8, 7 ... 1) until finished. For time, methodical.","Basic version: drop the burpees."],
+KBC:["Two KBs or DBs 100 m apart. Run back and forth continuously, 10 swings at one bell and 10 goblet squats at the other. One round is 50 total reps. For time, 5 min rest between rounds, 2-5 rounds (3 rounds in place of Peggy, 5 in place of Sildi).","Push-ups and air squats can replace the bells."],
+R400:["400 m at your fastest sustainable pace, then jog or walk 400 m to recover. Same number of rounds as the workout it replaces (4-15+)."],
+GC1:["Burpees 3 min, rest 3 min. Burpees 2 min, rest 2 min. Burpees 1 min, rest 1 min. Repeat 1-3 rounds.","Max burpees in each work period. Stay methodical, any burpee type is fine."],
+GC3:["Burpees 30 s then dips 30 s. Burpees 30 s then squats 30 s. Burpees 30 s then back extensions 30 s. Rest 1 min. 3-5 rounds.","Squats are bodyweight. Planks or bicycle crunches can replace back extensions."],
+GC7:["50 burpees, 50 squats, 50 diamond push-ups, run 800 m. 3-5 rounds for time.","Best on a track, treadmill is OK."],
+GC9:["Part A: as many rounds as possible in 10 min of 3 pull-ups, 5 burpees, 10 squats. Finish A before B.","Part B: 10 x 100 m sprints."],
+GC11:["A: sprint 100 m, bear crawl 50 m. 3-5 rounds for time.","B: 100 sledgehammer or tire strikes for time. Alternatives: 100 burpees, 100 KB swings or 50 tire flips. Finish A before B."],
+GC12:["A: 1.5 mile run for time.","B: 20 barbell push-press, 20 back extensions, 20 pull-ups. 3-5 rounds for time."],
+HIC37:["A: 10 plyo push-ups, 10 jump squats, 5 plyo pull-ups. Rest 1-2 min between exercises. 3-5 rounds.","B: 5 x 50 m sprints, rest 3-5 min between. Finish A before B.","Plyo moves are explosive and crisp. Plyo pull-up, if able: pull up fast, release the bar briefly, catch, lower under control."],
+HIC39:["Sprint 50 m, then 5 plyo push-ups. Rest 3-5 min. Sprint 50 m, then 5 squat jumps. Rest 3-5 min. 3 rounds.","The long rests let you reset for maximum power."],
+Peggy:["Hill with 30-100 m of runway and a decent slope, stairs work too. Put a KB or DB at the top.","Jog up and down continuously at a sustainable pace for the timer. At the top do 10 KB swings (25 push-ups with no bell). Rest as needed, the goal is none.","No hill: Kettlebell Cricket x 3 rounds. Two bells 100 m apart, run between them, 10 swings at one end and 10 goblet squats at the other until 50 total reps. For time, 5 min rest between rounds."],
+Sildi:["Steep hill, pair of KB or DB at 10-30 lb each. Timer for the session.","Farmer carry the bells up, hiking briskly. Drop them at the top and jog down empty. Jog back up, hike the bells down, drop them at the bottom, jog up and down empty. Repeat until time.","Rest as needed. Goal is to work continuously. No equipment: Peggy for 45 min. No hill: Kettlebell Cricket x 5 rounds."],
+Hill:["Sprint uphill 10 s at max effort. Walk back down. Take 2-5 min total rest between sprints.","No hill: 400 m repeats, same number of rounds. Run 400 m at your fastest sustainable pace, jog or walk 400 m to recover."],
+LSS:["Easy conversational jog for the time. Ignore heart rate, use the talk test or effort. Pace by time.","Running or jogging is the recommended mode. Cycling, rowing, swimming, stationary bike, elliptical or treadmill also work. A common plan is to run most sessions and fill gaps with other modes to limit impact."],
+TR:["Trail with a few hills or uneven ground. Ignore heart rate. Keep the overall pace conversational but mix it up: sprint the odd hill, speed walk others, jog flats and downhills.","Other low intensity options: Variable intensity run (urban trail run: easy jog on city streets, run stairs, a few side-to-sides, the odd 30-50 m sprint, jump easy obstacles, stop for traffic). Continuous loaded carry (light or moderate KB or DB, single arm or farmer style, brisk conversational walk, break if grip fails). Ruck or weight vest hike (10-20% of bodyweight, continuous walk or hike)."],
+AB:["Afterburner: LSS for the prescribed time. Then do 3-5 sprints of 30-60 s each, resting 2-5 min between sprints.","Works with any LSS mode, including cycling and rowing."],
+"4x8":["Warm-up jog 10 min. Run 8 min at about 85-90% max HR (10k pace). Recovery jog 2 min. 4 intervals total. Cool-down jog 5 min.","Hard but in control, you could do one more."]
+};
+var CAT={GC1:{n:"GC1 Beat Your Face",s:"GC1",eq:[]},GC2:{n:"GC2",s:"GC2",eq:["bar"]},GC3:{n:"GC3 Brig Rat",s:"GC3",eq:[]},GC7:{n:"GC7",s:"GC7",eq:["run"]},GC9:{n:"GC9",s:"GC9",eq:["bar","run"]},GC11:{n:"GC11 Outside the Wire",s:"GC11",eq:["run"]},GC12:{n:"GC12",s:"GC12",eq:["run","bar"]},Peggy:{n:"Peggy (30 min)",s:"Peggy",eq:["hill"]},Sildi:{n:"Sildi Suicides (45 min)",s:"Sildi",eq:["hill","bell"]},KBC:{n:"Kettlebell Cricket",s:"KBC",eq:["bell","run"]},Hill:{n:"Hill sprints",s:"Hill",eq:["hill"]},R400:{n:"400 m repeats",s:"400s",eq:["run"]},"4x8":{n:"4x8 interval run",s:"4x8",eq:["run"]},HIC37:{n:"HIC37 BW plyo/power",s:"HIC37",eq:["bar","run"]},HIC39:{n:"HIC39 kinetic",s:"HIC39",eq:["run"]}};
+function mk(c){return {k:"cond",s:CAT[c].s,t:CAT[c].n,d:DESC[c],it:[R(CAT[c].n,"Log time, distance, notes")]}}
+var P=[];
+function W(ph,d){P.push({ph:ph,d:d})}
+function R(n,rx,k,p){return {n:n,rx:rx,k:k,p:p}}
+function se(s,r){return {k:"se",s:"SE",t:"Strength endurance, "+s+" rounds x "+r,sets:s,reps:r}}
+function lss(m){return {k:"lss",s:"LSS",t:"LSS "+m+" min",min:m,d:DESC.LSS}}
+function lift(t,it){return {k:"lift",s:"Lift",t:t,it:it}}
+function test(ks){return {k:"test",s:"Test",t:"1RM test",it:ks.map(function(k){return R(NM[k],"Warm up, pyramid to a solid 1-3RM, enter your estimated 1RM",k)})}}
+function cond(x){var kk=x.split(" ")[0];return {k:"cond",s:kk.slice(0,5),t:x,d:DESC[kk],it:[R(x,"Log time, distance, notes")]}}
+// Base
+var RP=[10,15,20,25],LS=[[30,30,35],[40,40,45],[50,50,55],[60,60,60]],i;
+for(i=0;i<4;i++)W("Base",[se(3,RP[i]),lss(LS[i][0]),se(3,RP[i]),lss(LS[i][1]),se(4,RP[i]),lss(LS[i][2]),null]);
+W("Base test",[null,null,test(["sq","bp"]),test(["dl","rp"]),test(["oh","br"]),null,null]);
+// Armor
+var AM=[[4,8,70,3,8,75,65],[4,5,80,3,5,80,70],[4,3,85,3,3,85,75]];
+for(i=0;i<3;i++){var a=AM[i],m1=a[0]+"x"+a[1]+" @"+a[2]+"%",m2=a[3]+"x"+a[4]+" @"+a[5]+"%",sp="3-5 x 8-10 @"+a[6]+"%",dr=(3-i)+"x"+a[4]+" @"+a[5]+"%";
+ var sA=[R("Reverse hyper or back extension",sp),R("Ab triad","3 x 5")],sB=[R("Pull-ups or inverted rows","Max reps, or "+sp),R("Overhead press",sp,"oh",a[6])];
+ W("Armor",[lift("Squat, rack pull, Supp A",[R("Squat",m1,"sq",a[2]),R("Rack pull",m1,"rp",a[2])].concat(sA)),
+  lift("Bench, row, Supp B",[R("Bench press",m1,"bp",a[2]),R("Barbell row",m1,"br",a[2])].concat(sB)),lss(60),
+  lift("Squat, deadlift, Supp A",[R("Squat",m2,"sq",a[5]),R("Deadlift",dr,"dl",a[5])].concat(sA)),lss(60),
+  lift("Bench, row, Supp B",[R("Bench press",m2,"bp",a[5]),R("Barbell row",m2,"br",a[5])].concat(sB)),null]);}
+// Operator
+function op(ph,sp,cd){var C=cd.map(cond),d;
+ if(sp){var rx=sp[0]+"x"+sp[1]+" @"+sp[2]+"%",p=sp[2],ab=R("Ab triad","3 x 5"),rw=R("Row, or weighted pull-up",rx,"br",p),bp=R("Bench press",rx,"bp",p);
+  var A=lift("Bench, squat, row, abs",[bp,R("Squat",rx,"sq",p),rw,ab]),B=lift("Bench, deadlift, row, abs",[bp,R("Deadlift","1-3 sets x "+sp[1]+" @"+p+"%","dl",p),rw,ab]);
+  d=[A,C[0],A,C[1],B,C[2],null];}
+ else{var PD=["One main lift only today, supplemental work is optional.","First: 1 work set x 3 @85%, warming up as needed. Then pick ONE: PEAK, adding 2.5-10 lb and working through triples, doubles and singles (PR optional, no limit on volume), or back off and hit heavy doubles and triples for volume."],PX="1x3 @85%, then your chosen peak technique";
+  var pk=function(n,k){var q=lift("Peak "+n.toLowerCase(),[R("Peak "+n.toLowerCase(),PX,k,85)]);q.d=PD;return q};
+  var pb=lift("Peak bench + LSS 30",[R("Peak bench",PX,"bp",85),R("LSS 30","Log minutes")]);pb.d=PD;
+  d=[pk("Squat","sq"),C[0],null,pb,null,C[2],pk("Deadlift","dl")];}
+ W(ph,d)}
+var c1=["LSS 60","LSS 60","Hill x 6-8"],c2=["LSS 30-60","LSS 30-60","LSS 30-60"],c3=["LSS 30","LSS 30","LSS 30"];
+var BL=[[3,5,75],[4,5,80],[5,3,85],[4,5,75],[3,5,80],null],BK=[["3-5",5,75],["3-5",5,80],["3-5",3,85],["3-5",5,75],["3-5",5,80],null];
+var cb=[c1,c2,c1,c2,c1,c3],x7=["TR 60-90","LSS 60-90","4x8 interval run"],y8=["AB 60-90","LSS 60-90","Hill sprints 8-10"],ck=[x7,y8,x7,y8,x7,c3];
+for(i=0;i<6;i++)op("Op Blue",BL[i],cb[i]);
+for(i=0;i<6;i++)op("Op Black",BK[i],ck[i]);
+W("Op test",[null,null,null,test(["pc","pp"]),null,test(["pl"]),null]);
+// Vertex
+var BR=[[3,3,65,3,5,65],[4,2,70,4,4,70],[5,1,75,5,3,75]],CV=[["GC1","GC9"],["GC3","Peggy 30"],["GC7","GC12"]];
+for(i=0;i<3;i++){var x=BR[i],jr=x[3]+"x"+x[4];
+ W("Vertex",[lift("Breacher A",[R("Power clean",x[0]+"x"+x[1]+" @"+x[2]+"%","pc",x[2]),R("Squat primer","Heavy single or double @85%","sq",85),R("Jump squat",jr),R("Bench primer","Heavy single or double @85%","bp",85),R("Plyo push-up",jr)]),
+  cond(CV[i][0]),null,
+  lift("Breacher B",[R("Push press",x[0]+"x"+x[1]+" @"+x[2]+"%","pp",x[2]),R("Barbell row primer","Heavy single or double @85%","br",85),R("Pendlay row",jr+" @"+x[5]+"%","pl",x[5]),R("Squat primer","Heavy single or double @85%","sq",85),R("Jump squat",jr)]),
+  null,cond(CV[i][1]),null]);}
+W("Vertex",[cond("HIC37"),null,cond("GC11"),null,cond("HIC39"),null,cond("Sildi 45")]);
+
+S.log=S.log||{};S.rm=S.rm||{};S.swap=S.swap||{};S.eq=S.eq||{bell:1,bar:1,hill:1,run:1};
+if(!S.sched){S.sched=P.map(function(w,p){return {p:p,days:w.d.map(function(s,j){return s?p+"."+j:null})}});
+ try{var o=JSON.parse(localStorage.getItem("se-tracker-v1")||"{}");for(var k in o){var q=k.split("-");if(+q[0]<=4)S.log[(q[0]-1)+"."+(q[1]-1)]=o[k]}}catch(e){}
+ save();}
+function orig(id){var q=id.split(".");return P[q[0]].d[q[1]]}
+function sess(id){var w=S.swap&&S.swap[id];return w&&CAT[w]?mk(w):orig(id)}
+function lg(id){return S.log[id]||(S.log[id]={r:[],i:[],sq:"",ab:"",min:"",note:"",done:false})}
+function isDone(id){return !!(S.log[id]&&S.log[id].done)}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function wt(k,p){var r=parseFloat(S.rm[k]);return r&&p?" = "+(Math.round(r*p/100/2.5)*2.5):""}
+function phase(w){return w.dl?"Deload":P[w.p].ph}
+function loc(id){for(var e=0;e<S.sched.length;e++){var d=S.sched[e].days.indexOf(id);if(d>-1)return {e:e,d:d}}}
+function next(){for(var e=0;e<S.sched.length;e++){var w=S.sched[e];if(w.dl){if(!w.done)return {e:e,dl:1};continue}
+ for(var d=0;d<7;d++){var id=w.days[d];if(id&&!isDone(id))return {e:e,d:d,id:id}}}return null}
+var V={page:"plan"};
+function plan(){
+ var n=next(),h='<h1>Activation, 25 weeks</h1><p class="sub">'+S.sched.length+' weeks scheduled. Tap a session to log it.</p>';
+ h+=n?'<button class="primary" data-go="'+(n.dl?"dl"+n.e:n.id)+'">Next up: week '+(n.e+1)+(n.dl?", deload":", day "+(n.d+1)+": "+esc(sess(n.id).t))+'</button>':'<p class="card">Everything is done.</p>';
+ h+='<div class="top"><button data-page="prog">Progress</button><button data-page="rm">1RMs</button><button data-page="bk">Backup</button></div><p class="leg">Border colors: green SE, blue conditioning, red lifting, gold test. Filled = done.</p>';
+ S.sched.forEach(function(w,e){
+  h+='<div class="wkh"><b>Week '+(e+1)+' <span>'+phase(w)+'</span></b>'+(w.dl?'<button data-rm="'+e+'">Remove</button>':'<button data-ins="'+e+'">+ Deload after</button>')+'</div>';
+  if(w.dl){h+='<button class="dl c'+(w.done?" done":"")+'" data-go="dl'+e+'">Deload week'+(w.done?", done":", tap to log")+'</button>';return}
+  h+='<div class="g">';
+  w.days.forEach(function(id,d){
+   if(!id){h+='<span class="c rest"><small>'+(d+1)+'</small>-</span>';return}
+   var s=sess(id);h+='<button class="c '+s.k+(isDone(id)?" done":"")+'" data-go="'+id+'" aria-label="Week '+(e+1)+' day '+(d+1)+' '+esc(s.t)+'"><small>'+(d+1)+'</small>'+esc(s.s)+'</button>';});
+  h+='</div>';});
+ return h;}
+function wmax(t){var m=String(t||"").match(/\d+(?:\.\d+)?/g);return m?Math.max.apply(null,m.map(parseFloat)):0}
+function mmss(v){var m=Math.floor(v),q=Math.round((v-m)*60);if(q===60){m++;q=0}return m+":"+(q<10?"0":"")+q}
+function series(){
+ var D={l:{},p:[]};
+ S.sched.forEach(function(w,e){if(w.dl)return;w.days.forEach(function(id,d){
+  if(!id||!S.log[id])return;var s=sess(id),r=S.log[id],x=e+d/7,best={},tst={};
+  if(s.k==="lift"){s.it.forEach(function(it,j){if(!it.k)return;var v=wmax((r.i||[])[j]);if(v&&v>(best[it.k]||0))best[it.k]=v})}
+  else if(s.k==="test"){s.it.forEach(function(it){var v=parseFloat((r.rm||{})[it.k]);if(v){best[it.k]=v;tst[it.k]=1}})}
+  else if(s.k==="lss"||(s.k==="cond"&&/^(LSS|TR|AB)/.test(s.t))){var m=parseFloat(r.min),dd=parseFloat(r.dist);if(m>0&&dd>0)D.p.push({x:x,y:m/dd,w:e+1})}
+  for(var k in best){(D.l[k]=D.l[k]||[]).push({x:x,y:best[k],t:tst[k],w:e+1})}
+ })});
+ return D;}
+function chart(pts,o){
+ if(!pts.length)return '<p class="note">Nothing logged yet.</p>';
+ var W=340,H=190,l=44,r=10,t=10,b=24,xs=pts.map(function(p){return p.x}),ys=pts.map(function(p){return p.y}),
+ x0=Math.min.apply(null,xs),x1=Math.max.apply(null,xs),y0=Math.min.apply(null,ys),y1=Math.max.apply(null,ys);
+ if(y1===y0){y0-=1;y1+=1}var pd=(y1-y0)*.15;y0-=pd;y1+=pd;if(x1===x0)x1=x0+1;
+ function X(v){return l+(v-x0)/(x1-x0)*(W-l-r)}
+ function Y(v){var f=(v-y0)/(y1-y0);return t+(o.inv?f:1-f)*(H-t-b)}
+ var g="",i;
+ for(i=0;i<4;i++){var v=y0+(y1-y0)*i/3,yy=Y(v);g+='<line class="gl" x1="'+l+'" x2="'+(W-r)+'" y1="'+yy+'" y2="'+yy+'"/><text class="tx" x="'+(l-5)+'" y="'+(yy+3)+'" text-anchor="end">'+o.f(v)+'</text>'}
+ var a=Math.floor(x0),z=Math.floor(x1),st=Math.max(1,Math.ceil((z-a+1)/6));
+ for(i=a;i<=z;i+=st){if(i<x0-.01&&i!==a)continue;g+='<text class="tx" x="'+Math.max(l,Math.min(W-r,X(Math.max(i,x0))))+'" y="'+(H-6)+'" text-anchor="middle">W'+(i+1)+'</text>'}
+ var line=pts.map(function(p){return X(p.x)+","+Y(p.y)}).join(" ");
+ var dots=pts.map(function(p){return '<circle cx="'+X(p.x)+'" cy="'+Y(p.y)+'" r="4" style="stroke:'+o.c+';stroke-width:2;fill:'+(p.t?'var(--card)':o.c)+'"><title>Week '+p.w+': '+o.f(p.y)+(p.t?' (1RM test)':'')+'</title></circle>'}).join("");
+ return '<svg class="ch" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Progress chart">'+g+'<polyline points="'+line+'" fill="none" style="stroke:'+o.c+';stroke-width:2"/>'+dots+'</svg>';}
+function prog(){
+ var D=series(),h='<button data-back>Back</button><h2>Progress</h2><p class="sub">Lifts show the heaviest weight you logged each session, and hollow dots are 1RM tests. LSS pace is minutes divided by distance, so stick to one unit.</p>',keys=Object.keys(NM).filter(function(k){return D.l[k]}),sel=V.ex;
+ if(!sel||(sel!=="lss"&&!D.l[sel]))sel=keys[0]||"lss";
+ h+='<div class="chips">';
+ keys.forEach(function(k){h+='<button data-ex="'+k+'" class="'+(sel===k?"sel":"")+'">'+NM[k]+'</button>'});
+ h+='<button data-ex="lss" class="'+(sel==="lss"?"sel":"")+'">LSS pace</button></div><div class="card">';
+ if(sel==="lss"){
+  var p=D.p;h+='<b>LSS pace</b><p class="note" style="margin:2px 0 8px">Minutes per distance unit. Higher on the chart is faster.</p>'+chart(p,{c:"var(--lss)",inv:1,f:mmss});
+  if(p.length){var f=p[0].y,la=p[p.length-1].y,be=Math.min.apply(null,p.map(function(q){return q.y})),dd=f-la;
+   h+='<div class="stats"><div>First<b>'+mmss(f)+'</b></div><div>Latest<b>'+mmss(la)+'</b></div><div>Best<b>'+mmss(be)+'</b></div><div>Change<b>'+(dd>0?"-":"+")+mmss(Math.abs(dd))+'</b></div></div>';}
+  else h+='<p class="note">Enter minutes and distance on an LSS day to start this chart.</p>';
+ }else{
+  var q=D.l[sel],f2=q[0].y,l2=q[q.length-1].y,b2=Math.max.apply(null,q.map(function(z){return z.y})),c=l2-f2;
+  h+='<b>'+NM[sel]+'</b>'+chart(q,{c:"var(--acc)",f:function(v){return String(Math.round(v*2)/2)}})+'<div class="stats"><div>First<b>'+f2+'</b></div><div>Latest<b>'+l2+'</b></div><div>Best<b>'+b2+'</b></div><div>Change<b>'+(c>0?"+":"")+Math.round(c*10)/10+'</b></div></div>';
+ }
+ return h+'</div>';}
+function bkp(){
+ var j=JSON.stringify({tb:2,at:new Date().toISOString(),data:S});
+ return '<button data-back>Back</button><h2>Backup and restore</h2><p class="sub">Your data lives in this browser only. Save a backup before clearing site data or moving to another host.</p><div class="card"><b>Backup</b><div class="row" style="margin-top:8px"><button data-bk="dl">Download file</button><button data-bk="cp">Copy text</button></div><label for="bt">Backup text</label><textarea id="bt" rows="4" readonly>'+esc(j)+'</textarea></div><div class="card"><b>Restore</b><p class="note">Replaces everything in this tracker with the backup.</p><label for="bf" style="margin-top:0">Backup file</label><input id="bf" type="file" accept=".json,application/json"><label for="rt">Or paste backup text</label><textarea id="rt" rows="4"></textarea><button data-bk="rs" style="width:100%;margin-top:10px">Restore backup</button></div><p class="note" id="bs"></p>';}
+function bkMsg(m){var e=document.getElementById("bs");if(e)e.textContent=m}
+function bkAct(a,b){
+ var tx=document.getElementById("bt");
+ if(a==="cp"){tx.select();var ok=false;
+  try{if(navigator.clipboard){navigator.clipboard.writeText(tx.value).then(function(){bkMsg("Copied.")},function(){bkMsg("Copy blocked. The text is selected, copy it by hand.")});return}}catch(e){}
+  try{ok=document.execCommand("copy")}catch(e){}bkMsg(ok?"Copied.":"Text selected, copy it by hand.")}
+ else if(a==="dl"){
+  var name="tb-backup-"+new Date().toISOString().slice(0,10)+".json";
+  var go=function(dn){
+   if(dn){dn.save({filename:name,data:tx.value}).then(function(){bkMsg("Backup saved.")},function(e){bkMsg(e&&e.code==="declined"?"Save cancelled.":"Could not save. Use Copy text instead.")});return}
+   try{var u=URL.createObjectURL(new Blob([tx.value],{type:"application/json"})),l=document.createElement("a");l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();bkMsg("Backup downloaded.")}catch(e){bkMsg("Download blocked. Use Copy text instead.")}};
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(go,function(){go(null)})}else go(null);}
+ else if(a==="rs"){
+  var o;try{o=JSON.parse(document.getElementById("rt").value.trim())}catch(e){V.cf=null;bkMsg("That is not valid backup text.");return}
+  var d2=o&&o.data?o.data:o;
+  if(!d2||!Array.isArray(d2.sched)||typeof d2.log!=="object"){V.cf=null;bkMsg("This does not look like a tracker backup.");return}
+  if(V.cf==="rs"){V.cf=null;S=d2;S.log=S.log||{};S.rm=S.rm||{};S.swap=S.swap||{};S.eq=S.eq||{bell:1,bar:1,hill:1,run:1};save();V={page:"plan"};render()}
+  else{V.cf="rs";b.textContent="Tap again to replace all data"}}
+}
+function rmv(){
+ var f=S.fp||{},h='<button data-back>Back</button><h2>Your 1RMs</h2><p class="sub">Enter these and sessions show target weights from the percentages (rounded to 2.5). A 2-3RM works as well as a true 1RM, use the estimator below.</p><div class="card">';
+ for(var k in NM)h+='<label for="rm'+k+'" style="margin-top:6px">'+NM[k]+'</label><input id="rm'+k+'" inputmode="decimal" data-f="rm" data-key="'+k+'" value="'+esc(S.rm[k])+'">';
+ h+='</div><div class="card"><b>1RM estimator</b><div class="row"><div><label for="ew">Weight</label><input id="ew" inputmode="decimal"></div><div><label for="er">Reps</label><input id="er" inputmode="numeric"></div></div><p class="note" id="eo" style="margin:8px 0 0"></p></div>';
+ h+='<div class="card"><b>Forced progression</b><p class="note">At the end of a block add 2.5-5 lb to upper body 1RMs and 5-10 lb to lower body 1RMs. If you could not finish all the reps, skip it and keep the same 1RMs. Lower = squat, deadlift, rack pull, power clean. Everything else counts as upper.</p><div class="row"><div><label for="fpl">Lower +</label><input id="fpl" inputmode="decimal" data-f="fpl" value="'+esc(f.l==null?5:f.l)+'"></div><div><label for="fpu">Upper +</label><input id="fpu" inputmode="decimal" data-f="fpu" value="'+esc(f.u==null?2.5:f.u)+'"></div></div><button data-fp="1" style="width:100%;margin-top:10px">Add to all 1RMs</button></div>';
+ return h;}
+function dlv(e){var w=S.sched[e];
+ return '<button data-back>Back</button><h2>Week '+(e+1)+', deload</h2><p class="sub">Extra recovery week. It pushes every later week back by one.</p><div class="card"><label for="dn" style="margin-top:0">Notes</label><textarea id="dn" rows="4" data-f="dlnote" data-e="'+e+'">'+esc(w.note)+'</textarea></div><button class="primary" data-dldone="'+e+'">'+(w.done?"Mark as not done":"Mark week complete")+'</button>';}
+function day(id){
+ var s=sess(id),r=lg(id),L=loc(id),h='<button data-back>Back</button><h2>Week '+(L.e+1)+', day '+(L.d+1)+'</h2><p class="sub">'+phase(S.sched[L.e])+': '+esc(s.t)+'</p>';
+ if(s.d)h+='<div class="card"><b>How to</b>'+s.d.map(function(t){return '<p class="note" style="margin:6px 0 0">'+esc(t)+'</p>'}).join("")+'</div>';
+ if(s.k==="lss"||(s.k==="cond"&&/^(LSS|TR|AB)/.test(s.t)))h+='<div class="card"><div class="row"><div><label for="min" style="margin-top:0">Minutes (target '+(s.min||esc(s.t.replace(/^\S+ /,"")))+')</label><input id="min" type="number" inputmode="decimal" data-f="min" value="'+esc(r.min)+'"></div><div><label for="dist" style="margin-top:0">Distance</label><input id="dist" inputmode="decimal" data-f="dist" placeholder="km or mi" value="'+esc(r.dist)+'"></div></div></div>';
+ else if(s.k==="se"){
+  h+='<div class="card"><table><tr><th></th><th>Push-ups</th><th>Goblet squat</th><th>Inv. row</th></tr>';
+  for(var a=0;a<s.sets;a++){h+='<tr><td>Round '+(a+1)+'</td>';for(var j=0;j<3;j++){var v=(r.r[a]||[])[j];h+='<td><input type="number" inputmode="numeric" aria-label="Round '+(a+1)+' exercise '+(j+1)+'" data-f="r" data-s="'+a+'" data-j="'+j+'" placeholder="'+s.reps+'" value="'+(v==null?"":v)+'"></td>'}h+='</tr>'}
+  h+='</table><p class="note" style="margin-top:8px">Rest 60-90 s between exercises, 2-5 min between rounds. Same goblet weight all block (10-30 lb).</p><label for="sq">Goblet squat weight</label><input id="sq" data-f="sq" inputmode="decimal" value="'+esc(r.sq)+'"><label for="ab">Ab triad rounds done (3 x 5, after all SE work)</label><input id="ab" type="number" inputmode="numeric" data-f="ab" value="'+esc(r.ab)+'"></div>';}
+ else{h+='<div class="card">';s.it.forEach(function(x,j){
+  var val=s.k==="test"?S.rm[x.k]:(r.i||[])[j];
+  h+='<div class="it"><b>'+esc(x.n)+'</b><p class="note">'+esc(x.rx)+wt(x.k,x.p)+'</p><input aria-label="'+esc(x.n)+' log" '+(s.k==="test"?'data-f="rm" data-key="'+x.k+'" placeholder="1RM"':'data-f="i" data-j="'+j+'" placeholder="Weight x reps, notes"')+' value="'+esc(val)+'"></div>';});h+='</div>';}
+ h+='<div class="card"><label for="note" style="margin-top:0">Notes</label><textarea id="note" rows="3" data-f="note">'+esc(r.note)+'</textarea></div>';
+ var og=orig(id),sw=og&&og.k==="cond"&&CAT[og.t.split(" ")[0]];
+ if(sw){var cur=S.swap[id]||"",EQ={bell:"KB or DB",bar:"Pull-up bar",hill:"Hill or stairs",run:"Run space or treadmill"};
+  h+='<div class="card"><b>Swap workout</b><p class="note" style="margin:2px 0 6px">'+(cur?"Original: "+esc(og.t)+". Keep the same volume and effort.":"Replace it with one that fits your equipment.")+'</p><span class="note">Equipment I have</span>';
+  for(var q in EQ)h+='<label class="ck"><input type="checkbox" data-eq="'+q+'"'+(S.eq[q]?" checked":"")+'> '+EQ[q]+'</label>';
+  h+='<label for="sw">Workout</label><select id="sw"><option value="">Original: '+esc(og.t)+'</option>';
+  for(var c in CAT){var ms=CAT[c].eq.filter(function(e){return !S.eq[e]});h+='<option value="'+c+'"'+(cur===c?" selected":"")+(ms.length?" disabled":"")+'>'+esc(CAT[c].n)+(ms.length?" (needs "+ms.map(function(e){return EQ[e]}).join(", ")+")":"")+'</option>'}
+  h+='</select></div>';}
+ h+='<div class="card"><b>Reschedule</b><div class="row"><div><label for="mw">Week</label><select id="mw">';
+ S.sched.forEach(function(w,e){if(!w.dl)h+='<option value="'+e+'"'+(e===L.e?" selected":"")+'>'+(e+1)+' '+esc(phase(w))+'</option>'});
+ h+='</select></div><div><label for="md">Day</label><select id="md">';
+ for(var d=0;d<7;d++)h+='<option value="'+d+'"'+(d===L.d?" selected":"")+'>Day '+(d+1)+'</option>';
+ h+='</select></div></div><p class="note" style="margin-top:8px">If the target day already has a session, the two swap.</p><button data-move="'+id+'" style="width:100%">Move session</button></div>';
+ return h+'<button class="primary" data-done="'+id+'">'+(r.done?"Mark as not done":"Mark session complete")+'</button>';}
+function render(keep){
+ var h=V.page==="rm"?rmv():V.page==="bk"?bkp():V.page==="prog"?prog():V.page==="dl"?dlv(V.e):V.page==="day"?day(V.id):plan();
+ document.getElementById("app").innerHTML=h;if(!keep)window.scrollTo(0,0);}
+document.addEventListener("click",function(ev){
+ var b=ev.target.closest("button");if(!b)return;var d=b.dataset;if(!d.rm&&!d.fp&&d.bk!=="rs")V.cf=null;
+ if(d.go){if(d.go.indexOf("dl")===0)V={page:"dl",e:+d.go.slice(2)};else V={page:"day",id:d.go};render()}
+ else if(d.page){V={page:d.page};render()}
+ else if(d.bk){bkAct(d.bk,b)}
+ else if(d.ex){V.ex=d.ex;render(1)}
+ else if(d.fp){if(V.cf==="fp"){V.cf=null;var fp=S.fp||{},lo=parseFloat(fp.l==null?5:fp.l),up=parseFloat(fp.u==null?2.5:fp.u);for(var k in S.rm){var v=parseFloat(S.rm[k]);if(v)S.rm[k]=String(v+(["sq","dl","rp","pc"].indexOf(k)>-1?lo:up))}save();render(1)}else{V.cf="fp";b.textContent="Tap again to add to all 1RMs"}}
+ else if(b.hasAttribute("data-back")){V={page:"plan"};render()}
+ else if(d.done){var r=lg(d.done);r.done=!r.done;save();V={page:"plan"};render()}
+ else if(d.dldone){var w=S.sched[+d.dldone];w.done=!w.done;save();V={page:"plan"};render()}
+ else if(d.ins){S.sched.splice(+d.ins+1,0,{dl:1,id:Date.now(),days:[null,null,null,null,null,null,null],note:"",done:false});save();render(1)}
+ else if(d.rm){if(V.cf===d.rm){V.cf=null;S.sched.splice(+d.rm,1);save();render(1)}else{V.cf=d.rm;b.textContent="Tap again to remove"}}
+ else if(d.move){var te=+document.getElementById("mw").value,td=+document.getElementById("md").value,L=loc(d.move);
+  var t=S.sched[te].days[td];S.sched[te].days[td]=d.move;S.sched[L.e].days[L.d]=t;save();V={page:"plan"};render()}
+});
+document.addEventListener("change",function(ev){
+ var t=ev.target,f=t.dataset.f;
+ if(t.id==="bf"&&t.files&&t.files[0]){var fr=new FileReader();fr.onload=function(){document.getElementById("rt").value=fr.result;bkMsg("File loaded. Tap Restore backup.")};fr.readAsText(t.files[0]);return}
+ if(t.id==="sw"){if(t.value)S.swap[V.id]=t.value;else delete S.swap[V.id];save();render(1);return}
+ if(t.dataset.eq){S.eq[t.dataset.eq]=t.checked;save();render(1);return}
+ if(!f)return;
+ if(f==="rm"){S.rm[t.dataset.key]=t.value;if(V.page==="day"){var q=lg(V.id);q.rm=q.rm||{};q.rm[t.dataset.key]=t.value}}
+ else if(f==="fpl"||f==="fpu"){S.fp=S.fp||{};S.fp[f.slice(2)]=t.value}
+ else if(f==="dlnote"){S.sched[+t.dataset.e].note=t.value}
+ else{var r=lg(V.id);
+  if(f==="r"){var s=+t.dataset.s,j=+t.dataset.j;r.r[s]=r.r[s]||[];r.r[s][j]=t.value}
+  else if(f==="i"){r.i=r.i||[];r.i[+t.dataset.j]=t.value}
+  else r[f]=t.value;}
+ save();
+});
+document.addEventListener("input",function(ev){var i=ev.target.id;if(i==="ew"||i==="er"){var w=parseFloat(document.getElementById("ew").value),r=parseFloat(document.getElementById("er").value);document.getElementById("eo").textContent=w&&r?"Estimated 1RM: "+Math.round(w*(r<=1?1:1+r/30)*2)/2:""}});
+render();
+</script>
+</body>
+</html>
